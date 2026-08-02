@@ -1,0 +1,461 @@
+/* Base settings */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 40px; /* Adjust according to navbar height */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fc;
+  color: #212529;
+  scroll-behavior: smooth;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease-in-out;
+  padding: 0.8rem 0;
+}
+
+.navbar-brand {
+  color: #008080 !important;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+/* Custom Toggler */
+/* Custom Hamburger/Cross Button */
+.custom-toggler {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  z-index: 1051;
+}
+
+.toggler-bar {
+  width: 28px;
+  height: 3px;
+  background-color: #008080;
+  transition: all 0.3s ease-in-out;
+  display: block;
+}
+
+/* Remove default border and outline */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+/* Optional: remove the border entirely even in normal state */
+.navbar-toggler {
+  border: none;
+  background: transparent; /* Optional, keeps background clean */
+  padding: 8px; /* optional tweak */
+  margin: 0; /* optional tweak */
+}
+
+
+
+/* OPEN STATE */
+.custom-toggler.open .top-bar {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.custom-toggler.open .middle-bar {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.custom-toggler.open .bottom-bar {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+
+
+
+
+/* Navbar Links */
+.nav-underline {
+  position: relative;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #008080;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-underline:hover::after {
+  width: 100%;
+}
+
+.nav-underline:hover {
+  color: #008080;
+}
+
+/* CTA Button */
+.btn-outline-primary {
+  border: 2px solid #008080;
+  color: #008080;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: 0.3s ease;
+}
+.btn-outline-primary:hover {
+  background-color: #008080;
+  color: #fff;
+}
+
+/* Responsive navbar gap */
+@media (max-width: 991px) {
+  .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+  .nav-underline:hover::after {
+  width: 40%;
+}
+}
+
+section {
+  position: relative;
+  padding-top: 100px;   /* Space below navbar */
+  margin-top: -100px;   /* Pull it back visually */
+}
+
+/* Hero Section */
+
+.hero-split {
+  background-color: #fefeffb6; /* Deep blue */
+  color: white;
+}
+
+.carousel img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption h5 {
+  font-size: 1.5rem;
+}
+
+
+@media (max-width: 768px) {
+  .carousel img {
+    height: 250px;
+  }
+
+  .hero-split {
+    text-align: center;
+  }
+}
+
+
+
+/* Section Titles */
+.section-title {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #008080;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Extra small devices (phones, <576px) */
+@media (max-width: 575.98px) {
+  .responsive-col {
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
+/* Small devices (phones landscape, ≥576px and <768px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .responsive-col {
+    padding: 15px 10px;
+    text-align: center;
+  }
+}
+
+/* Medium devices (tablets, ≥768px and <992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .responsive-col {
+    padding: 20px 15px;
+    text-align: left;
+  }
+}
+
+/* Large devices (desktops, ≥992px and <1200px) */
+@media (min-width: 992px) {
+  .responsive-col {
+    padding: 30px 20px;
+  }
+}
+
+
+/* Services / Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+.card h4 {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.card .icon {
+  font-size: 2.75rem;
+  color: #008080;
+  margin-bottom: 15px;
+}
+
+/* Contact Form */
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+.form-control:focus {
+  border-color: #008080;
+  box-shadow: 0 0 0 0.2rem rgba(0, 128, 128, 0.25);
+}
+.btn-success {
+  background-color: #008080;
+  border-color: #008080;
+  font-weight: 600;
+  border-radius: 50px;
+}
+.btn-success:hover {
+  background-color: #005f5f;
+  border-color: #005f5f;
+}
+
+
+/*Product Range*//* SECTION BACKGROUND & SPACING */
+
+
+    .category-box {
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 20px 10px;
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+      height: 100%;
+    }
+
+    .category-box:hover {
+      background-color: #e7f1ff;
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(13, 110, 253, 0.15);
+      color: #0d6efd;
+    }
+
+    .category-box i {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 10px;
+      color: #0d6efd;
+    }
+  
+
+
+
+/* News Card Styling */
+/* Newsroom Section - Elegant Corporate Theme */
+
+/* News Card */.news-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-top: 6px solid #00695c; /* gradient bar alternative */
+}
+
+/* Gradient left bar for decoration */
+.news-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #009688, #00796b);
+  transition: height 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(0, 105, 92, 0.15);
+}
+
+.news-card h5 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #004d40; /* deep teal */
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.news-card p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444;
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .news-card {
+    padding: 28px 20px;
+  }
+
+  .news-card h5 {
+    font-size: 1.3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .news-card p {
+    font-size: 1rem;
+  }
+}
+
+
+/* Footer */
+/* Footer Base */
+.footer {
+  background:#f4f7fc;               /* Soft mint-white background */
+  color: #008080;                    /* Dark bluish text for contrast */
+  padding-top: 60px;
+  padding-bottom: 40px;
+  font-size: 0.96rem;
+  border-top: 3px solid #008080;     /* Chemical green accent */
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  line-height: 1.7;
+}
+
+/* Headings */
+.footer h5,
+.footer h6 {
+  color: #008080;                    /* Deep teal for heading */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Links */
+.footer a {
+  display: inline-block;
+  color: #1770ff;
+  text-decoration: none;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  letter-spacing: 0.4px;
+}
+
+.footer a::before {
+  content: "›";
+  position: absolute;
+  left: -12px;
+  color: #000000;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer a:hover {
+  color: #008080;
+  transform: translateX(6px);
+}
+
+.footer a:hover::before {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Icons */
+.footer i {
+  color: #008080;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Newsletter Input */
+.footer input[type="email"] {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #1e293b;
+  padding: 10px 15px;
+  border-radius: 30px;
+  outline: none;
+}
+
+.footer input[type="email"]::placeholder {
+  color: #6c757d;
+}
+
+.footer button {
+  background-color: #008080;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.footer button:hover {
+  background-color: #02513c;
+}
+
+/* Bottom Text */
+.footer .copyright {
+  border-top: 1px solid #ccc;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
