@@ -401,7 +401,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                                                 type="email"
                                                                 className="form-control rounded-3"
                                                                 required
-                                                                placeholder="e.g. abc@gmail.com"
+                                                                placeholder="e.g. chromolin@gmail.com"
                                                                 value={formData.email}
                                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                                             />
