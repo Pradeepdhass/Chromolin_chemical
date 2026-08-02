@@ -389,7 +389,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                                                 type="text"
                                                                 className="form-control rounded-3"
                                                                 required
-                                                                placeholder="e.g. Rahul Sharma"
+                                                                placeholder="e.g. Chromolin"
                                                                 value={formData.name}
                                                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                                             />
@@ -401,7 +401,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                                                 type="email"
                                                                 className="form-control rounded-3"
                                                                 required
-                                                                placeholder="e.g. rahul@textiles.com"
+                                                                placeholder="e.g. abc@gmail.com"
                                                                 value={formData.email}
                                                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                                             />
