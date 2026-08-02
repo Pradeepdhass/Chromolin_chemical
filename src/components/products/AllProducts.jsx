@@ -3,6 +3,22 @@ import { productData } from '../../data/products';
 import { Link } from 'react-router-dom';
 import ProductLogoCard from '../ProductLogoCard';
 
+const ProductImageDisplay = ({ image, name, categoryTitle }) => {
+    const [hasError, setHasError] = useState(false);
+
+    if (image && !hasError) {
+        return (
+            <img 
+                src={image} 
+                alt={name} 
+                className="w-100 h-100 object-fit-contain p-1"
+                onError={() => setHasError(true)}
+            />
+        );
+    }
+    return <ProductLogoCard name={name} categoryTitle={categoryTitle} />;
+};
+
 const AllProducts = () => {
     const [globalSearch, setGlobalSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -200,8 +216,8 @@ const AllProducts = () => {
                                     <div key={pIdx} className="col-12 col-md-6 col-lg-4">
                                         <div className="card product-card h-100 d-flex flex-column">
                                             {/* Image Wrapper */}
-                                            <div className="product-card-img-wrapper border-bottom" style={{ height: '190px' }}>
-                                                <ProductLogoCard name={product.name} categoryTitle={category.title} />
+                                            <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '190px' }}>
+                                                <ProductImageDisplay image={product.image} name={product.name} categoryTitle={category.title} />
                                                 <div className="position-absolute top-0 start-0 m-3">
                                                     <span className="badge bg-dark bg-opacity-75 text-white px-3 py-1 rounded-pill small">
                                                         {specs.ionic}
@@ -321,8 +337,8 @@ const AllProducts = () => {
                                     {activeTab === 'specs' ? (
                                         <div className="row g-4">
                                             <div className="col-12 col-md-5">
-                                                <div className="rounded-4 shadow-sm border overflow-hidden mb-3" style={{ height: '220px' }}>
-                                                    <ProductLogoCard name={selectedProduct.name} categoryTitle={selectedProduct.categoryTitle} />
+                                                <div className="rounded-4 shadow-sm border overflow-hidden mb-3 bg-light" style={{ height: '220px' }}>
+                                                    <ProductImageDisplay image={selectedProduct.image} name={selectedProduct.name} categoryTitle={selectedProduct.categoryTitle} />
                                                 </div>
                                                 <div className="p-3 bg-light rounded-3 border">
                                                     <h6 className="fw-bold mb-2" style={{ color: '#008080' }}>
