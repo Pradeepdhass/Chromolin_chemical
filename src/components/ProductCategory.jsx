@@ -176,7 +176,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                     {/* Body Content */}
                                     <div className="card-body p-3 d-flex flex-column flex-grow-1">
                                         {/* Title with left accent bar */}
-                                        <div className="d-flex align-items-center mb-1.5">
+                                        <div className="d-flex align-items-center mb-2.5">
                                             <div style={{ width: '3px', height: '18px', backgroundColor: '#008080', borderRadius: '3px', marginRight: '8px' }}></div>
                                             <h6 className="card-title fw-bold m-0 text-truncate" style={{ color: '#008080', fontSize: '0.95rem' }}>
                                                 {product.name}
@@ -184,7 +184,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                         </div>
 
                                         {/* Feature Badges */}
-                                        <div className="d-flex flex-wrap gap-1 mb-2">
+                                        <div className="d-flex flex-wrap gap-1 mb-3">
                                             {badges.map((b, i) => (
                                                 <span 
                                                     key={i} 
