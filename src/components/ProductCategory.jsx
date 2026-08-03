@@ -159,37 +159,37 @@ const ProductCategory = ({ title, description, products = [] }) => {
                             <div key={index} className="col-6 col-md-4 col-lg-3">
                                 <div className="card product-card h-100 d-flex flex-column">
                                     {/* Image Wrapper with Scale & Badges */}
-                                    <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '210px' }}>
+                                    <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '145px' }}>
                                         <ProductImageDisplay image={product.image} name={product.name} categoryTitle={title} />
-                                        <div className="position-absolute top-0 start-0 m-3">
-                                            <span className="badge bg-dark bg-opacity-75 text-white px-3 py-1 rounded-pill small">
+                                        <div className="position-absolute top-0 start-0 m-2">
+                                            <span className="badge bg-dark bg-opacity-75 text-white px-2 py-1 rounded-pill extra-small" style={{ fontSize: '0.7rem' }}>
                                                 {specs.ionic}
                                             </span>
                                         </div>
-                                        <div className="position-absolute top-0 end-0 m-3">
-                                            <span className="badge text-white px-3 py-1 rounded-pill small" style={{ backgroundColor: '#008080' }}>
+                                        <div className="position-absolute top-0 end-0 m-2">
+                                            <span className="badge text-white px-2 py-1 rounded-pill extra-small" style={{ backgroundColor: '#008080', fontSize: '0.7rem' }}>
                                                 Ref #{index + 1}
                                             </span>
                                         </div>
                                     </div>
 
                                     {/* Body Content */}
-                                    <div className="card-body p-4 d-flex flex-column flex-grow-1">
+                                    <div className="card-body p-3 d-flex flex-column flex-grow-1">
                                         {/* Title with left accent bar */}
-                                        <div className="d-flex align-items-center mb-3">
-                                            <div style={{ width: '4px', height: '24px', backgroundColor: '#008080', borderRadius: '4px', marginRight: '12px' }}></div>
-                                            <h4 className="card-title fw-bold m-0 fs-5" style={{ color: '#008080' }}>
+                                        <div className="d-flex align-items-center mb-1.5">
+                                            <div style={{ width: '3px', height: '18px', backgroundColor: '#008080', borderRadius: '3px', marginRight: '8px' }}></div>
+                                            <h6 className="card-title fw-bold m-0 text-truncate" style={{ color: '#008080', fontSize: '0.95rem' }}>
                                                 {product.name}
-                                            </h4>
+                                            </h6>
                                         </div>
 
                                         {/* Feature Badges */}
-                                        <div className="d-flex flex-wrap gap-1 mb-3">
+                                        <div className="d-flex flex-wrap gap-1 mb-2">
                                             {badges.map((b, i) => (
                                                 <span 
                                                     key={i} 
-                                                    className="badge px-3 py-1 rounded-pill"
-                                                    style={{ fontSize: '0.75rem', fontWeight: '500', ...b.style }}
+                                                    className="badge px-2 py-0.5 rounded-pill"
+                                                    style={{ fontSize: '0.7rem', fontWeight: '500', ...b.style }}
                                                 >
                                                     {b.text}
                                                 </span>
@@ -197,21 +197,21 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                         </div>
 
                                         {/* Description */}
-                                        <p className="card-text text-secondary mb-4 flex-grow-1" style={{ fontSize: '0.92rem', lineHeight: '1.65' }}>
+                                        <p className="card-text text-secondary mb-2 flex-grow-1" style={{ fontSize: '0.82rem', lineHeight: '1.45', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                                             {product.description}
                                         </p>
 
                                         {/* Quick Spec Bar */}
-                                        <div className="bg-light p-2 px-3 rounded-3 mb-4 border d-flex justify-content-between text-muted small">
+                                        <div className="bg-light p-1.5 px-2 rounded-3 mb-3 border d-flex justify-content-between text-muted extra-small" style={{ fontSize: '0.73rem' }}>
                                             <span><i className="fas fa-cogs me-1 text-teal" style={{ color: '#008080' }}></i> {specs.process.split('&')[0]}</span>
                                             <span><i className="fas fa-layer-group me-1 text-teal" style={{ color: '#008080' }}></i> {specs.form.split('/')[0]}</span>
                                         </div>
 
                                         {/* Actions */}
-                                        <div className="pt-3 border-top mt-auto d-flex gap-2">
+                                        <div className="pt-2 border-top mt-auto d-flex gap-1.5">
                                             <button
-                                                className="btn btn-outline-teal w-100 rounded-pill fw-semibold py-2 btn-sm"
-                                                style={{ borderColor: '#008080', color: '#008080' }}
+                                                className="btn btn-outline-teal w-100 rounded-pill fw-semibold py-1.5 px-2 btn-sm"
+                                                style={{ borderColor: '#008080', color: '#008080', fontSize: '0.78rem' }}
                                                 onClick={() => {
                                                     setSelectedProduct(product);
                                                     setActiveTab('specs');
@@ -222,8 +222,8 @@ const ProductCategory = ({ title, description, products = [] }) => {
                                                 <i className="fas fa-file-alt me-1"></i> Technical Specs
                                             </button>
                                             <button
-                                                className="btn rounded-pill fw-semibold py-2 btn-sm px-3 text-white"
-                                                style={{ backgroundColor: '#008080' }}
+                                                className="btn rounded-pill fw-semibold py-1.5 px-2.5 btn-sm text-white shrink-0"
+                                                style={{ backgroundColor: '#008080', fontSize: '0.78rem' }}
                                                 onClick={() => {
                                                     setSelectedProduct(product);
                                                     setActiveTab('inquire');

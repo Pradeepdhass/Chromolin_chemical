@@ -288,31 +288,31 @@ const AllProducts = () => {
                                     <div key={pIdx} className="col-6 col-md-4 col-lg-3">
                                         <div className="card product-card h-100 d-flex flex-column">
                                             {/* Image Wrapper */}
-                                            <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '190px' }}>
+                                            <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '145px' }}>
                                                 <ProductImageDisplay image={product.image} name={product.name} categoryTitle={category.title} />
-                                                <div className="position-absolute top-0 start-0 m-3">
-                                                    <span className="badge bg-dark bg-opacity-75 text-white px-3 py-1 rounded-pill small">
+                                                <div className="position-absolute top-0 start-0 m-2">
+                                                    <span className="badge bg-dark bg-opacity-75 text-white px-2 py-1 rounded-pill extra-small" style={{ fontSize: '0.7rem' }}>
                                                         {specs.ionic}
                                                     </span>
                                                 </div>
                                             </div>
 
                                             {/* Card Body */}
-                                            <div className="card-body p-4 d-flex flex-column flex-grow-1">
-                                                <div className="d-flex align-items-center mb-2">
-                                                    <div style={{ width: '4px', height: '22px', backgroundColor: '#008080', borderRadius: '4px', marginRight: '10px' }}></div>
-                                                    <h5 className="card-title fw-bold m-0" style={{ color: '#008080' }}>
+                                            <div className="card-body p-3 d-flex flex-column flex-grow-1">
+                                                <div className="d-flex align-items-center mb-1.5">
+                                                    <div style={{ width: '3px', height: '18px', backgroundColor: '#008080', borderRadius: '3px', marginRight: '8px' }}></div>
+                                                    <h6 className="card-title fw-bold m-0 text-truncate" style={{ color: '#008080', fontSize: '0.95rem' }}>
                                                         {product.name}
-                                                    </h5>
+                                                    </h6>
                                                 </div>
 
                                                 {/* Badges */}
-                                                <div className="d-flex flex-wrap gap-1 mb-3">
+                                                <div className="d-flex flex-wrap gap-1 mb-2">
                                                     {badges.map((b, i) => (
                                                         <span 
                                                             key={i} 
-                                                            className="badge px-3 py-1 rounded-pill"
-                                                            style={{ fontSize: '0.75rem', fontWeight: '500', ...b.style }}
+                                                            className="badge px-2 py-0.5 rounded-pill"
+                                                            style={{ fontSize: '0.7rem', fontWeight: '500', ...b.style }}
                                                         >
                                                             {b.text}
                                                         </span>
@@ -320,15 +320,15 @@ const AllProducts = () => {
                                                 </div>
 
                                                 {/* Description */}
-                                                <p className="card-text text-secondary mb-4 flex-grow-1 small" style={{ lineHeight: '1.65' }}>
+                                                <p className="card-text text-secondary mb-3 flex-grow-1" style={{ fontSize: '0.82rem', lineHeight: '1.45', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                                                     {product.description}
                                                 </p>
 
                                                 {/* Actions */}
-                                                <div className="pt-3 border-top mt-auto d-flex gap-2">
+                                                <div className="pt-2 border-top mt-auto d-flex gap-1.5">
                                                     <button
-                                                        className="btn btn-outline-teal w-100 rounded-pill btn-sm fw-semibold py-2"
-                                                        style={{ borderColor: '#008080', color: '#008080' }}
+                                                        className="btn btn-outline-teal w-100 rounded-pill btn-sm fw-semibold py-1.5 px-2"
+                                                        style={{ borderColor: '#008080', color: '#008080', fontSize: '0.78rem' }}
                                                         onClick={() => {
                                                             setSelectedProduct({ ...product, categoryTitle: category.title });
                                                             setActiveTab('specs');
@@ -339,8 +339,8 @@ const AllProducts = () => {
                                                         <i className="fas fa-file-alt me-1"></i> Technical Specs
                                                     </button>
                                                     <button
-                                                        className="btn rounded-pill btn-sm fw-semibold py-2 px-3 text-white"
-                                                        style={{ backgroundColor: '#008080' }}
+                                                        className="btn rounded-pill btn-sm fw-semibold py-1.5 px-2.5 text-white shrink-0"
+                                                        style={{ backgroundColor: '#008080', fontSize: '0.78rem' }}
                                                         onClick={() => {
                                                             setSelectedProduct({ ...product, categoryTitle: category.title });
                                                             setActiveTab('inquire');
