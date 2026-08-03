@@ -73,12 +73,17 @@ const Navbar = () => {
     const productCategories = [
         { name: 'All Products', path: '/all-products', icon: 'bi-grid-fill' },
         { name: 'Desizing', path: '/desizing', icon: 'bi-droplet-half' },
-        { name: 'Cationic Softeners', path: '/cationic-softeners', icon: 'bi-layers-fill' },
         { name: 'Mercerisation', path: '/mercerisation', icon: 'bi-flower1' },
-        { name: 'Silicone Softeners', path: '/silicone-softeners', icon: 'bi-water' },
-        { name: 'Garment Processing', path: '/garment-processing', icon: 'bi-app-indicator' },
-        { name: 'After Treatment', path: '/after-treatment', icon: 'bi-shield-check' },
         { name: 'Wetting & Scouring', path: '/wetting-scouring', icon: 'bi-funnel-fill' },
+        { name: 'Stabilizers & Sequestering', path: '/stabilizers-sequestering', icon: 'bi-shield-shaded' },
+        { name: 'Defoamers & Lubricants', path: '/defoamers-lubricants', icon: 'bi-wind' },
+        { name: 'After Treatment', path: '/after-treatment', icon: 'bi-shield-check' },
+        { name: 'Finishing', path: '/finishing', icon: 'bi-magic' },
+        { name: 'Cationic Softeners', path: '/cationic-softeners', icon: 'bi-layers-fill' },
+        { name: 'Non-Ionic Softeners', path: '/non-ionic-softeners', icon: 'bi-square-fill' },
+        { name: 'Silicone Softeners', path: '/silicone-softeners', icon: 'bi-water' },
+        { name: 'Polyester Processing', path: '/polyester-processing', icon: 'bi-gear-wide-connected' },
+        { name: 'Garment Processing', path: '/garment-processing', icon: 'bi-app-indicator' },
     ];
 
     return (

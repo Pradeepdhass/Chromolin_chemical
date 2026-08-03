@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductLogoCard from './ProductLogoCard';
-
-const ProductImageDisplay = ({ image, name, categoryTitle }) => {
-    const [hasError, setHasError] = useState(false);
-
-    if (image && !hasError) {
-        return (
-            <img 
-                src={image} 
-                alt={name} 
-                className="w-100 h-100 object-fit-contain p-1"
-                onError={() => setHasError(true)}
-            />
-        );
-    }
-    return <ProductLogoCard name={name} categoryTitle={categoryTitle} />;
+const ProductImageDisplay = ({ image, name }) => {
+    return (
+        <img 
+            src={image} 
+            alt={name} 
+            className="w-100 h-100 object-fit-contain p-1"
+        />
+    );
 };
 
 const ProductCategory = ({ title, description, products = [] }) => {
@@ -109,46 +101,46 @@ const ProductCategory = ({ title, description, products = [] }) => {
             </div>
 
             {/* Premium Hero Banner */}
-            <div className="product-hero-banner p-4 p-md-5 mb-5">
+            <div className="product-hero-banner p-3 p-md-4 mb-3">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-8">
-                        <span className="badge bg-white text-teal px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm" style={{ color: '#008080' }}>
-                            <i className="fas fa-flask me-2"></i> Chromolin Specialty Range
+                        <span className="badge bg-white text-teal px-2.5 py-1 rounded-pill fw-bold mb-1.5 shadow-sm extra-small" style={{ color: '#008080', fontSize: '0.75rem' }}>
+                            <i className="fas fa-flask me-1.5"></i> Chromolin Range
                         </span>
-                        <h1 className="fw-bold display-5 mb-3">{title}</h1>
-                        <p className="lead text-white-50 mb-4 fs-6" style={{ maxWidth: '680px', lineHeight: '1.7' }}>
+                        <h3 className="fw-bold mb-1 text-white fs-4 fs-md-2">{title}</h3>
+                        <p className="text-white-50 mb-2 small d-none d-sm-block" style={{ maxWidth: '640px', lineHeight: '1.4' }}>
                             {description}
                         </p>
-
+  
                         {/* Search Input embedded in Banner */}
-                        <div className="position-relative" style={{ maxWidth: '520px' }}>
-                            <div className="input-group input-group-lg rounded-pill overflow-hidden shadow-lg border-0 bg-white">
-                                <span className="input-group-text bg-white border-0 ps-4">
-                                    <i className="fas fa-search" style={{ color: '#008080' }}></i>
+                        <div className="position-relative mt-2" style={{ maxWidth: '480px' }}>
+                            <div className="input-group rounded-pill overflow-hidden shadow-sm border-0 bg-white">
+                                <span className="input-group-text bg-white border-0 ps-3">
+                                    <i className="fas fa-search small text-muted"></i>
                                 </span>
                                 <input
                                     type="text"
-                                    className="form-control border-0 fs-6 shadow-none py-3 text-dark"
-                                    placeholder="Search by product name, formulation or application..."
+                                    className="form-control border-0 small shadow-none py-1.5 text-dark"
+                                    placeholder="Search products..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                                 {searchTerm && (
-                                    <button className="btn btn-white border-0 text-muted pe-4" onClick={() => setSearchTerm('')}>
-                                        <i className="fas fa-times"></i>
+                                    <button className="btn btn-white border-0 text-muted pe-3 py-1" onClick={() => setSearchTerm('')}>
+                                        <i className="fas fa-times small"></i>
                                     </button>
                                 )}
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-12 col-lg-4 mt-4 mt-lg-0 text-center text-lg-end">
-                        <div className="bg-white bg-opacity-10 backdrop-blur p-4 rounded-4 border border-white border-opacity-25 d-inline-block text-center w-100" style={{ maxWidth: '280px' }}>
-                            <div className="display-4 fw-bold text-white mb-1">{filteredProducts.length}</div>
-                            <div className="text-white-50 text-uppercase small fw-semibold tracking-wider">
+                    <div className="col-12 col-lg-4 mt-3 mt-lg-0 text-center text-lg-end d-none d-lg-block">
+                        <div className="bg-white bg-opacity-10 backdrop-blur p-3 rounded-4 border border-white border-opacity-25 d-inline-block text-center w-100" style={{ maxWidth: '220px' }}>
+                            <div className="fs-2 fw-bold text-white mb-0">{filteredProducts.length}</div>
+                            <div className="text-white-50 text-uppercase small fw-semibold tracking-wider" style={{ fontSize: '0.75rem' }}>
                                 Products Available
                             </div>
-                            <div className="mt-3 pt-3 border-top border-white border-opacity-20 text-white-50 small">
+                            <div className="mt-2 pt-2 border-top border-white border-opacity-20 text-white-50" style={{ fontSize: '0.75rem' }}>
                                 <i className="fas fa-check-circle me-1 text-teal-light"></i> ISO 9001 & GOTS Verified
                             </div>
                         </div>
@@ -158,13 +150,13 @@ const ProductCategory = ({ title, description, products = [] }) => {
 
             {/* Products Grid */}
             {filteredProducts.length > 0 ? (
-                <div className="row g-4 justify-content-start">
+                <div className="row g-2 g-md-4 justify-content-start">
                     {filteredProducts.map((product, index) => {
                         const badges = getBadges(product.description);
                         const specs = getSpecs(product);
 
                         return (
-                            <div key={index} className="col-12 col-md-6 col-lg-4">
+                            <div key={index} className="col-6 col-md-4 col-lg-3">
                                 <div className="card product-card h-100 d-flex flex-column">
                                     {/* Image Wrapper with Scale & Badges */}
                                     <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '210px' }}>

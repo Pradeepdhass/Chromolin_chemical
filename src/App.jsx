@@ -26,6 +26,7 @@ import PolyesterProcessing from './components/products/PolyesterProcessing';
 import StabilizersSequestering from './components/products/StabilizersSequestering';
 import WettingScouring from './components/products/WettingScouring';
 import DefoamersLubricants from './components/products/DefoamersLubricants';
+import Finishing from './components/products/Finishing';
 import AllProducts from './components/products/AllProducts';
 import Contact from './components/Contact';
 import FloatingScrollIndicator from './components/FloatingScrollIndicator';
@@ -87,6 +88,7 @@ function App() {
             <Route path="/polyester-processing" element={<PolyesterProcessing />} />
             <Route path="/non-ionic-softeners" element={<NonIonicSofteners />} />
             <Route path="/defoamers-lubricants" element={<DefoamersLubricants />} />
+            <Route path="/finishing" element={<Finishing />} />
             <Route path="/news" element={<Newsroom />} />
             <Route path="/contact" element={<Contact />} />
             {/* Add more routes as categories are added to productData */}

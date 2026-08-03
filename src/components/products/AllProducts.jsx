@@ -1,31 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { productData } from '../../data/products';
 import { Link } from 'react-router-dom';
-import ProductLogoCard from '../ProductLogoCard';
 
-const ProductImageDisplay = ({ image, name, categoryTitle }) => {
-    const [hasError, setHasError] = useState(false);
+const categoryIcons = {
+    all: 'fas fa-th-large',
+    desizing: 'fas fa-tint',
+    mercerisation: 'fas fa-spa',
+    wettingScouring: 'fas fa-filter',
+    stabilizersSequestering: 'fas fa-shield-alt',
+    defoamersLubricants: 'fas fa-oil-can',
+    afterTreatment: 'fas fa-vial',
+    finishing: 'fas fa-magic',
+    cationicSofteners: 'fas fa-feather-alt',
+    nonIonicSofteners: 'fas fa-layer-group',
+    siliconeSofteners: 'fas fa-water',
+    polyesterProcessing: 'fas fa-cogs',
+    garmentProcessing: 'fas fa-tshirt'
+};
 
-    if (image && !hasError) {
-        return (
-            <img 
-                src={image} 
-                alt={name} 
-                className="w-100 h-100 object-fit-contain p-1"
-                onError={() => setHasError(true)}
-            />
-        );
-    }
-    return <ProductLogoCard name={name} categoryTitle={categoryTitle} />;
+const ProductImageDisplay = ({ image, name }) => {
+    return (
+        <img 
+            src={image} 
+            alt={name} 
+            className="w-100 h-100 object-fit-contain p-1"
+        />
+    );
 };
 
 const AllProducts = () => {
     const [globalSearch, setGlobalSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('all');
+    const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [activeTab, setActiveTab] = useState('specs');
     const [inquirySubmitted, setInquirySubmitted] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', company: '', quantity: '', message: '' });
+
+    const scrollContainerRef = useRef(null);
+
+    const scrollLeft = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({ left: -260, behavior: 'smooth' });
+        }
+    };
+
+    const scrollRight = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({ left: 260, behavior: 'smooth' });
+        }
+    };
 
     const categoryKeys = Object.keys(productData);
 
@@ -101,82 +125,130 @@ const AllProducts = () => {
             </div>
 
             {/* Master Hero Banner */}
-            <div className="product-hero-banner p-4 p-md-5 mb-4">
+            <div className="product-hero-banner p-3 p-md-4 mb-3">
                 <div className="row align-items-center">
                     <div className="col-12 col-lg-8">
-                        <span className="badge bg-white text-teal px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm" style={{ color: '#008080' }}>
-                            <i className="fas fa-layer-group me-2"></i> Master Product Directory
+                        <span className="badge bg-white text-teal px-2.5 py-1 rounded-pill fw-bold mb-1.5 shadow-sm extra-small" style={{ color: '#008080', fontSize: '0.75rem' }}>
+                            <i className="fas fa-layer-group me-1.5"></i> Master Directory
                         </span>
-                        <h1 className="fw-bold display-5 mb-3">All Specialty Products</h1>
-                        <p className="lead text-white-50 mb-4 fs-6" style={{ maxWidth: '680px', lineHeight: '1.7' }}>
+                        <h3 className="fw-bold mb-1 text-white fs-4 fs-md-2">All Specialty Products</h3>
+                        <p className="text-white-50 mb-2 small d-none d-sm-block" style={{ maxWidth: '640px', lineHeight: '1.4' }}>
                             Explore our comprehensive portfolio of textile processing chemicals, softeners, enzymes, wetting agents, and garment finishing solutions.
                         </p>
 
-                        {/* Search Input embedded in Banner */}
-                        <div className="position-relative" style={{ maxWidth: '540px' }}>
-                            <div className="input-group input-group-lg rounded-pill overflow-hidden shadow-lg border-0 bg-white">
-                                <span className="input-group-text bg-white border-0 ps-4">
-                                    <i className="fas fa-search" style={{ color: '#008080' }}></i>
+                        {/* Integrated Unified Search & Category Filter Bar */}
+                        <div className="position-relative mt-2" style={{ maxWidth: '640px' }}>
+                            <div className="input-group rounded-pill overflow-visible shadow border-0 bg-white p-1">
+                                {/* Integrated Category Dropdown Trigger */}
+                                <div className="position-relative">
+                                    <button
+                                        type="button"
+                                        className="btn rounded-pill border-0 fw-semibold d-flex align-items-center gap-1.5 px-3 py-1.5 small shadow-none h-100"
+                                        style={{ backgroundColor: '#e6f4f4', color: '#008080' }}
+                                        onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
+                                    >
+                                        <i className={categoryIcons[selectedCategory] || 'fas fa-th-large'} style={{ color: '#008080' }}></i>
+                                        <span className="fw-bold d-inline-block text-truncate" style={{ maxWidth: '140px' }}>
+                                            {selectedCategory === 'all' ? 'All Categories' : productData[selectedCategory]?.title.replace('Explore Our ', '').replace(' Materials', '')}
+                                        </span>
+                                        <span className="badge rounded-pill text-white ms-1 px-2 py-0.5" style={{ backgroundColor: '#008080', fontSize: '0.72rem' }}>
+                                            {selectedCategory === 'all' ? totalCount : productData[selectedCategory]?.products.length}
+                                        </span>
+                                        <i className={`fas fa-chevron-${isMobileCategoryOpen ? 'up' : 'down'} extra-small text-muted ms-1`}></i>
+                                    </button>
+
+                                    {/* Custom Popover Category Menu */}
+                                    {isMobileCategoryOpen && (
+                                        <>
+                                            <div className="position-fixed top-0 start-0 w-100 h-100 z-2" onClick={() => setIsMobileCategoryOpen(false)}></div>
+                                            <div className="custom-mobile-dropdown-menu" style={{ minWidth: '270px', left: '0' }}>
+                                                <div className="p-2 border-bottom mb-1 d-flex align-items-center justify-content-between text-muted small fw-bold" style={{ fontSize: '0.75rem' }}>
+                                                    <span><i className="fas fa-layer-group me-1 text-teal" style={{ color: '#008080' }}></i> FILTER BY CATEGORY</span>
+                                                    <span>{categoryKeys.length} CATEGORIES</span>
+                                                </div>
+                                                <div 
+                                                    className={`custom-mobile-dropdown-item ${selectedCategory === 'all' ? 'active' : ''}`}
+                                                    onClick={() => {
+                                                        setSelectedCategory('all');
+                                                        setIsMobileCategoryOpen(false);
+                                                    }}
+                                                >
+                                                    <span className="d-flex align-items-center gap-2">
+                                                        <i className={categoryIcons.all}></i>
+                                                        <span>All Categories</span>
+                                                    </span>
+                                                    <span className="d-flex align-items-center gap-2">
+                                                        <span className="badge rounded-pill bg-light text-dark px-2 py-0.5" style={{ fontSize: '0.75rem' }}>{totalCount}</span>
+                                                        {selectedCategory === 'all' && <i className="fas fa-check small ms-1"></i>}
+                                                    </span>
+                                                </div>
+
+                                                {categoryKeys.map((catKey) => {
+                                                    const cat = productData[catKey];
+                                                    const count = cat.products.length;
+                                                    const label = cat.title.replace('Explore Our ', '').replace(' Materials', '');
+                                                    const icon = categoryIcons[catKey] || 'fas fa-flask';
+                                                    const isActive = selectedCategory === catKey;
+
+                                                    return (
+                                                        <div 
+                                                            key={catKey}
+                                                            className={`custom-mobile-dropdown-item ${isActive ? 'active' : ''}`}
+                                                            onClick={() => {
+                                                                setSelectedCategory(catKey);
+                                                                setIsMobileCategoryOpen(false);
+                                                            }}
+                                                        >
+                                                            <span className="d-flex align-items-center gap-2 text-truncate pe-2">
+                                                                <i className={icon}></i>
+                                                                <span className="text-truncate">{label}</span>
+                                                            </span>
+                                                            <span className="d-flex align-items-center gap-1 shrink-0">
+                                                                <span className="badge rounded-pill bg-light text-dark px-2 py-0.5" style={{ fontSize: '0.75rem' }}>{count}</span>
+                                                                {isActive && <i className="fas fa-check small ms-1"></i>}
+                                                            </span>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+
+                                {/* Vertical Divider */}
+                                <div className="vr my-auto mx-1" style={{ height: '22px', opacity: 0.2 }}></div>
+
+                                {/* Search Input Field */}
+                                <span className="input-group-text bg-transparent border-0 ps-2 pe-1">
+                                    <i className="fas fa-search small text-muted"></i>
                                 </span>
                                 <input
                                     type="text"
-                                    className="form-control border-0 fs-6 shadow-none py-3 text-dark"
-                                    placeholder="Search across all 40+ products by name, code or feature..."
+                                    className="form-control border-0 small shadow-none py-1.5 text-dark"
+                                    placeholder="Search products..."
                                     value={globalSearch}
                                     onChange={(e) => setGlobalSearch(e.target.value)}
                                 />
                                 {globalSearch && (
-                                    <button className="btn btn-white border-0 text-muted pe-4" onClick={() => setGlobalSearch('')}>
-                                        <i className="fas fa-times"></i>
+                                    <button className="btn btn-white border-0 text-muted pe-3 py-1" onClick={() => setGlobalSearch('')}>
+                                        <i className="fas fa-times small"></i>
                                     </button>
                                 )}
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-12 col-lg-4 mt-4 mt-lg-0 text-center text-lg-end">
-                        <div className="bg-white bg-opacity-10 backdrop-blur p-4 rounded-4 border border-white border-opacity-25 d-inline-block text-center w-100" style={{ maxWidth: '280px' }}>
-                            <div className="display-4 fw-bold text-white mb-1">{categoryKeys.length}</div>
-                            <div className="text-white-50 text-uppercase small fw-semibold tracking-wider">
+                    <div className="col-12 col-lg-4 mt-3 mt-lg-0 text-center text-lg-end d-none d-lg-block">
+                        <div className="bg-white bg-opacity-10 backdrop-blur p-3 rounded-4 border border-white border-opacity-25 d-inline-block text-center w-100" style={{ maxWidth: '220px' }}>
+                            <div className="fs-2 fw-bold text-white mb-0">{categoryKeys.length}</div>
+                            <div className="text-white-50 text-uppercase small fw-semibold tracking-wider" style={{ fontSize: '0.75rem' }}>
                                 Specialty Categories
                             </div>
-                            <div className="mt-3 pt-3 border-top border-white border-opacity-20 text-white-50 small">
-                                <i className="fas fa-certificate me-1 text-teal-light"></i> ISO, GOTS & Oeko-Tex Standard
+                            <div className="mt-2 pt-2 border-top border-white border-opacity-20 text-white-50" style={{ fontSize: '0.75rem' }}>
+                                <i className="fas fa-certificate me-1 text-teal-light"></i> ISO & GOTS Standard
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {/* Interactive Category Filter Bar */}
-            <div className="bg-white p-3 p-md-4 rounded-4 shadow-sm border mb-5">
-                <div className="d-flex align-items-center justify-content-between mb-2">
-                    <span className="text-muted fw-bold small text-uppercase" style={{ letterSpacing: '0.5px' }}>
-                        <i className="fas fa-filter me-2 text-teal" style={{ color: '#008080' }}></i> Select Category:
-                    </span>
-                    <span className="small text-muted">Showing {selectedCategory === 'all' ? 'All Categories' : productData[selectedCategory]?.title.replace('Explore Our ', '').replace(' Materials', '')}</span>
-                </div>
-                <div className="d-flex flex-wrap gap-2 pt-1">
-                    <button
-                        className={`category-nav-pill ${selectedCategory === 'all' ? 'active' : ''}`}
-                        onClick={() => setSelectedCategory('all')}
-                    >
-                        All Categories ({totalCount})
-                    </button>
-                    {categoryKeys.map((catKey) => {
-                        const cat = productData[catKey];
-                        const count = cat.products.length;
-                        const label = cat.title.replace('Explore Our ', '').replace(' Materials', '');
-                        return (
-                            <button
-                                key={catKey}
-                                className={`category-nav-pill ${selectedCategory === catKey ? 'active' : ''}`}
-                                onClick={() => setSelectedCategory(catKey)}
-                            >
-                                {label} ({count})
-                            </button>
-                        );
-                    })}
                 </div>
             </div>
 
@@ -213,7 +285,7 @@ const AllProducts = () => {
                                 const specs = getSpecs(product);
 
                                 return (
-                                    <div key={pIdx} className="col-12 col-md-6 col-lg-4">
+                                    <div key={pIdx} className="col-6 col-md-4 col-lg-3">
                                         <div className="card product-card h-100 d-flex flex-column">
                                             {/* Image Wrapper */}
                                             <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '190px' }}>
