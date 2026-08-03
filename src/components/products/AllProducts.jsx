@@ -285,7 +285,7 @@ const AllProducts = () => {
                                 const specs = getSpecs(product);
 
                                 return (
-                                    <div key={pIdx} className="col-6 col-md-4 col-lg-3">
+                                    <div key={pIdx} className="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div className="card product-card h-100 d-flex flex-column">
                                             {/* Image Wrapper */}
                                             <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '145px' }}>

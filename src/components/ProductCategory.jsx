@@ -156,7 +156,7 @@ const ProductCategory = ({ title, description, products = [] }) => {
                         const specs = getSpecs(product);
 
                         return (
-                            <div key={index} className="col-6 col-md-4 col-lg-3">
+                            <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-3">
                                 <div className="card product-card h-100 d-flex flex-column">
                                     {/* Image Wrapper with Scale & Badges */}
                                     <div className="product-card-img-wrapper border-bottom bg-light" style={{ height: '145px' }}>
